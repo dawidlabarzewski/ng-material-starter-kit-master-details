@@ -1,0 +1,19 @@
+<mat-grid-list cols="2" rowHeight="1:2">
+  <mat-grid-tile>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let item of list$ | async">
+        {{item.username}}
+        <button mat-button color="primary" (click)="selectUser(item.id)">Show contact data</button>
+      </mat-list-item>
+    </mat-list>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <ng-container *ngIf="userDetails$ | async as item">
+      <div>
+        <p>{{ item.username }}</p>
+        <p>Email: {{ item.email }}</p>
+        <p>Phone: {{ item.phone }}</p>
+      </div>
+    </ng-container>
+  </mat-grid-tile>
+</mat-grid-list>
